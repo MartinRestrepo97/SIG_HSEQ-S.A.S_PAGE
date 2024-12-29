@@ -129,3 +129,78 @@ footer {
 .not-available {
   color: #555;
 }
+
+/* Estilos para la sección Hero */
+.hero-section {
+  background-image: url('https://via.placeholder.com/1500');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+}
+
+.hero-title {
+  font-weight: bold;
+}
+
+.hero-button {
+  margin-top: 24px;
+  background-color: #005cc5;
+}
+
+/* Estilos para la sección de Servicios */
+.services-section {
+  padding-top: 64px;
+  padding-bottom: 64px;
+}
+
+.services-title {
+  font-weight: bold;
+  color: #005cc5;
+}
+
+.services-subtitle {
+  margin-bottom: 48px;
+}
+
+.service-card {
+  transition: transform 0.3s;
+}
+
+.service-card:hover {
+  transform: scale(1.05);
+}
+
+.service-card-title {
+  font-weight: bold;
+}
+
+.service-card-button {
+  margin-top: 16px;
+  background-color: #005cc5;
+}
+
+/* Estilos para la sección de Candela */
+.candela-section {
+  background-color: #f4f4f4;
+  padding-top: 64px;
+  padding-bottom: 64px;
+}
+
+.candela-image {
+  border-radius: 8px;
+}
+
+.candela-title {
+  font-weight: bold;
+  color: #005cc5;
+}
+
+.candela-button {
+  margin-top: 16px;
+  background-color: #005cc5;
+}
