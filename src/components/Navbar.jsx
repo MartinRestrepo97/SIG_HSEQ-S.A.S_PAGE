@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import {
   AppBar,
@@ -64,7 +64,7 @@ const Navbar = ({ setCurrentPage }) => {
               <MenuItem onClick={() => handleNavigation('landing')} sx={{ fontWeight: 'bold' }}>
                 Inicio
               </MenuItem>
-              <MenuItem onClick={() => handleNavigation('certificate')} sx={{ fontWeight: 'bold' }}>
+              <MenuItem onClick={() => handleNavigation('certificados')} sx={{ fontWeight: 'bold' }}>
                 Consultar Certificados
               </MenuItem>
             </Menu>
@@ -80,7 +80,7 @@ const Navbar = ({ setCurrentPage }) => {
             </Button>
             <Button
               color="inherit"
-              onClick={() => handleNavigation('certificate')}
+              onClick={() => handleNavigation('certificados')}
               sx={{ fontWeight: 'bold', textTransform: 'none', fontSize: '1rem' }}
             >
               Consultar Certificados
