@@ -2,7 +2,7 @@ import { useState } from 'react';
 import './App.css';
 import Navbar from './components/Navbar';
 import LandingPage from './components/LandingPage';
-import CertificateDownloader from './components/CertificateDownloader';
+import CertificadosDownloader from './components/CertificadosDownloader';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('landing');
@@ -12,7 +12,7 @@ function App() {
       <Navbar setCurrentPage={setCurrentPage} />
       <main>
         {currentPage === 'landing' && <LandingPage />}
-        {currentPage === 'certificate' && <CertificateDownloader />}
+        {currentPage === 'certificados' && <CertificadosDownloader />}
       </main>
       <footer>
         <p>© 2024 HSEQ - SIG SAS. Todos los derechos reservados.</p>
