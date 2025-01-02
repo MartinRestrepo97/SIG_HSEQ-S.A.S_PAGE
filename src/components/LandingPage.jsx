@@ -1,23 +1,23 @@
 import { Box, Typography, Button, Container, Grid, Card, CardContent, CardMedia } from '@mui/material';
 
 // Imágenes de fondo y contenido
-const candelaImage = 'https://via.placeholder.com/300'; // Reemplaza con la imagen de Candela
+const candelaImage = 'src/logo/logo.png'; // Reemplaza con la imagen de Candela
 
 const services = [
   {
     title: 'Consultoría HSEQ',
     description: 'Ofrecemos asesoría en seguridad, salud y medio ambiente.',
-    image: 'https://via.placeholder.com/300',
+    image: 'https://media.licdn.com/dms/image/v2/D4E12AQHoQ0SbEtOH_g/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1691970046745?e=2147483647&v=beta&t=peMZtZMFI6bM1Xg2U_g1SwhmMiSwLcyZN2sZzmOyfuw',
   },
   {
     title: 'Interventoría Técnica',
     description: 'Supervisión y control de proyectos de construcción.',
-    image: 'https://via.placeholder.com/300',
+    image: 'https://www.urbicad.com/img/fondo_p4.jpg',
   },
   {
     title: 'Gestión Ambiental',
     description: 'Soluciones para el manejo sostenible de recursos.',
-    image: 'https://via.placeholder.com/300',
+    image: 'https://www.polisura.edu.co/wp-content/uploads/2024/08/gestion-ambiental.jpg',
   },
 ];
 
@@ -28,13 +28,13 @@ const LandingPage = () => {
       <Box className="hero-section">
         <Container>
           <Typography variant="h2" gutterBottom className="hero-title">
-            Candela conoce el mundo
+            Conoce a SIG HSEQ S.A.S
           </Typography>
           <Typography variant="h5" gutterBottom>
-            Candela Barroso - Experta y directora de fotografía de viajes
+            SIG HSEQ SAS - Experto y en Sistemas de Gestion
           </Typography>
           <Button variant="contained" size="large" className="hero-button">
-            Conoce a Candela
+            Conoce a SIG HSEQ SAS
           </Button>
         </Container>
       </Box>
@@ -89,10 +89,10 @@ const LandingPage = () => {
             </Grid>
             <Grid item xs={12} md={6}>
               <Typography variant="h4" gutterBottom className="candela-title">
-                Conoce a Candela
+                Conoce a SIG HSEQ SAS
               </Typography>
               <Typography variant="body1" gutterBottom>
-                Candela Barroso es una experta en fotografía de viajes con más de 10 años de experiencia. Su pasión por explorar nuevos lugares y capturar momentos únicos la ha llevado a trabajar en proyectos internacionales.
+                SIG HSEQ SAS es una experto en sistemas de gestion con más de 10 años de experiencia. Su pasión por explorar nuevos lugares y capturar momentos únicos la ha llevado a trabajar en proyectos internacionales.
               </Typography>
               <Button variant="contained" className="candela-button">
                 Ver más

@@ -22,7 +22,7 @@ import {
 import { Download } from '@mui/icons-material'; // Ícono de descarga
 import { getCertificados, deleteCertificado } from '../api/api'; // Importa las funciones de la API
 
-const CertificateDownloader = () => {
+const CertificadosDownloader = () => {
   const [searchType, setSearchType] = useState('registro');
   const [searchValue, setSearchValue] = useState('');
   const [results, setResults] = useState([]);
@@ -74,7 +74,7 @@ const CertificateDownloader = () => {
   };
 
   return (
-    <Container className="certificate-downloader-container">
+    <Container className="certificados-downloader-container">
       {/* Formulario de Búsqueda */}
       <Paper className="search-form">
         <Typography variant="h4" align="center" gutterBottom className="form-title">
@@ -91,7 +91,6 @@ const CertificateDownloader = () => {
                   label="Opción de búsqueda"
                   className="select-field"
                 >
-                  <MenuItem value="registro">Número de Registro</MenuItem>
                   <MenuItem value="documento">Documento de Identificación</MenuItem>
                 </Select>
               </FormControl>
@@ -139,26 +138,26 @@ const CertificateDownloader = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {results.map((certificate) => (
-                  <TableRow key={certificate.id} className="table-row">
-                    <TableCell>{certificate.id}</TableCell>
-                    <TableCell>{certificate.nombre}</TableCell>
-                    <TableCell>{certificate.fecha}</TableCell>
+                {results.map((certificados) => (
+                  <TableRow key={certificados.id} className="table-row">
+                    <TableCell>{certificados.id}</TableCell>
+                    <TableCell>{certificados.nombre}</TableCell>
+                    <TableCell>{certificados.fecha}</TableCell>
                     <TableCell>
                       <Typography
                         variant="body2"
-                        className={`status ${certificate.estado === 'Disponible' ? 'available' : 'pending'}`}
+                        className={`status ${certificados.estado === 'Disponible' ? 'available' : 'pending'}`}
                       >
-                        {certificate.estado}
+                        {certificados.estado}
                       </Typography>
                     </TableCell>
                     <TableCell>
-                      {certificate.estado === 'Disponible' ? (
+                      {certificados.estado === 'Disponible' ? (
                         <Button
                           variant="contained"
                           startIcon={<Download />}
                           className="download-button"
-                          onClick={() => handleDownload(certificate.id)}
+                          onClick={() => handleDownload(certificados.id)}
                         >
                           Descargar
                         </Button>
@@ -170,7 +169,7 @@ const CertificateDownloader = () => {
                       <Button
                         variant="contained"
                         color="error"
-                        onClick={() => handleDelete(certificate.id)}
+                        onClick={() => handleDelete(certificados.id)}
                         style={{ marginLeft: '10px' }}
                       >
                         Eliminar
@@ -187,4 +186,4 @@ const CertificateDownloader = () => {
   );
 };
 
-export default CertificateDownloader;
+export default CertificadosDownloader;

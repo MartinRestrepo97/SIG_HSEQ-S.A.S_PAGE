@@ -1,16 +1,16 @@
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL: 'http://localhost:8000/api', // URL de tu backend Laravel
+    baseURL: 'http://127.0.0.1:8000', // URL de tu backend Laravel
     headers: {
         'Content-Type': 'application/json',
     },
 });
 
 export const getCertificados = () => api.get('/certificados');
-export const createCertificado = (certificado) => api.post('/certificados', certificado);
+export const createCertificado = (certificados) => api.post('/certificados', certificados);
 export const deleteCertificado = (id) => api.delete(`/certificados/${id}`);
 
 export const getClientes = () => api.get('/clientes');
-export const createCliente = (cliente) => api.post('/clientes', cliente);
-export const deleteCliente = (id) => api.delete(`/clientes/${id}`);
+export const createClientes = (clientes) => api.post('/clientes', clientes);
+export const deleteClientes = (id) => api.delete(`/clientes/${id}`);
