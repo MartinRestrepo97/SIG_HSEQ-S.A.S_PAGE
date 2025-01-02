@@ -91,7 +91,6 @@ const CertificadosDownloader = () => {
                   label="Opción de búsqueda"
                   className="select-field"
                 >
-                  <MenuItem value="registro">Número de Registro</MenuItem>
                   <MenuItem value="documento">Documento de Identificación</MenuItem>
                 </Select>
               </FormControl>

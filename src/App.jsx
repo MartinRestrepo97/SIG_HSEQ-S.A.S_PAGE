@@ -15,7 +15,7 @@ function App() {
         {currentPage === 'certificados' && <CertificadosDownloader />}
       </main>
       <footer>
-        <p>© 2024 HSEQ - SIG SAS. Todos los derechos reservados.</p>
+        <p>© 2024 SIG-HSEQ SAS. Todos los derechos reservados.</p>
       </footer>
     </div>
   );

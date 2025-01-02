@@ -40,7 +40,7 @@ const Navbar = ({ setCurrentPage }) => {
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <img src={logo} alt="Logo" style={{ height: '50px', marginRight: '10px' }} />
           <Typography variant="h6" sx={{ fontWeight: 'bold', color: 'white' }}>
-            HSEQ - SIG SAS
+          SIG-HSEQ SAS
           </Typography>
         </Box>
 
