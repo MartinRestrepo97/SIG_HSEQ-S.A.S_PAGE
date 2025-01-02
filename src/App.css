@@ -132,7 +132,7 @@ footer {
 
 /* Estilos para la sección Hero */
 .hero-section {
-  background-image: url('https://via.placeholder.com/1500');
+  background-image: url('https://www.nueva-iso-45001.com/wp-content/uploads/2020/04/Digitalizaci%C3%B3n-en-el-%C3%A1mbito-de-la-SST.jpg');
   background-size: cover;
   background-position: center;
   height: 100vh;
@@ -294,4 +294,40 @@ footer {
 
 .not-available {
   color: #555;
+}
+
+/* Estilos para el Navbar */
+.navbar {
+  background-color: #005cc5;
+  box-shadow: none;
+}
+
+.navbar-logo {
+  height: 50px;
+  margin-right: 10px;
+}
+
+.navbar-title {
+  font-weight: bold;
+  color: white;
+}
+
+.navbar-button {
+  font-weight: bold;
+  text-transform: none;
+  font-size: 1rem;
+  color: white;
+}
+
+.navbar-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Estilos para el menú móvil */
+.mobile-menu {
+  margin-top: 40px;
+}
+
+.mobile-menu-item {
+  font-weight: bold;
 }
