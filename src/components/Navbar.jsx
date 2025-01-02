@@ -34,13 +34,13 @@ const Navbar = ({ setCurrentPage }) => {
   };
 
   return (
-    <AppBar position="static" sx={{ backgroundColor: '#005cc5', boxShadow: 'none' }}>
+    <AppBar position="static" className="navbar">
       <Toolbar sx={{ justifyContent: 'space-between' }}>
         {/* Logo y nombre de la empresa */}
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          <img src={logo} alt="Logo" style={{ height: '50px', marginRight: '10px' }} />
-          <Typography variant="h6" sx={{ fontWeight: 'bold', color: 'white' }}>
-          SIG-HSEQ SAS
+          <img src={logo} alt="Logo" className="navbar-logo" />
+          <Typography variant="h6" className="navbar-title">
+            SIG-HSEQ SAS
           </Typography>
         </Box>
 
@@ -59,12 +59,12 @@ const Navbar = ({ setCurrentPage }) => {
               anchorEl={anchorEl}
               open={Boolean(anchorEl)}
               onClose={handleMenuClose}
-              sx={{ mt: 5 }}
+              className="mobile-menu"
             >
-              <MenuItem onClick={() => handleNavigation('landing')} sx={{ fontWeight: 'bold' }}>
+              <MenuItem onClick={() => handleNavigation('landing')} className="mobile-menu-item">
                 Inicio
               </MenuItem>
-              <MenuItem onClick={() => handleNavigation('certificados')} sx={{ fontWeight: 'bold' }}>
+              <MenuItem onClick={() => handleNavigation('certificados')} className="mobile-menu-item">
                 Consultar Certificados
               </MenuItem>
             </Menu>
@@ -74,14 +74,14 @@ const Navbar = ({ setCurrentPage }) => {
             <Button
               color="inherit"
               onClick={() => handleNavigation('landing')}
-              sx={{ fontWeight: 'bold', textTransform: 'none', fontSize: '1rem' }}
+              className="navbar-button"
             >
               Inicio
             </Button>
             <Button
               color="inherit"
               onClick={() => handleNavigation('certificados')}
-              sx={{ fontWeight: 'bold', textTransform: 'none', fontSize: '1rem' }}
+              className="navbar-button"
             >
               Consultar Certificados
             </Button>

@@ -92,7 +92,7 @@ const LandingPage = () => {
                 Conoce a SIG HSEQ SAS
               </Typography>
               <Typography variant="body1" gutterBottom>
-                SIG HSEQ SAS es una experto en sistemas de gestion con más de 10 años de experiencia. Su pasión por explorar nuevos lugares y capturar momentos únicos la ha llevado a trabajar en proyectos internacionales.
+                SIG HSEQ SAS es una experto en sistemas de gestion con más de 10 años de experiencia. Su pasión por aplicar las normativas momentos únicos la ha llevado a trabajar en proyectos internacionales.
               </Typography>
               <Button variant="contained" className="candela-button">
                 Ver más
