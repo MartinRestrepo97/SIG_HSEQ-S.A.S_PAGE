@@ -77,14 +77,6 @@ const CertificadosDownloader = () => {
     // Aquí puedes implementar la lógica para eliminar el certificado
   };
 
-  if (loading) {
-    return <CircularProgress />; // Mostrar un spinner de carga
-  }
-
-  if (error) {
-    return <Typography color="error">Error: {error}</Typography>; // Mostrar un mensaje de error
-  }
-
   return (
     <Container className="certificados-downloader-container">
       {/* Formulario de Búsqueda */}
@@ -132,13 +124,54 @@ const CertificadosDownloader = () => {
           </Grid>
         </Box>
       </Paper>
-
+      {loading && <CircularProgress />}
+      {error && <Typography color="error">Error: {error}</Typography>}
       {/* Componente de Tabla y Descarga */}
-      {results.length > 0 && (
+      {!loading && !error && clientes?.cedula && (
         <Paper className="results-table" sx={{ p: 3 }}>
+        <Box>
+          <Box>
           <Typography variant="h5" gutterBottom className="table-title">
             Resultados de la Búsqueda
           </Typography>
+          </Box>
+          <Box display="flex" >
+            <Box display="inline-flex" width="50%">
+              <Typography mr={1} variant="subtitle1" gutterBottom>
+                Nombre:
+              </Typography>
+              <Typography variant="body" gutterBottom>
+                {clientes?.nombre}
+              </Typography>
+            </Box>
+            <Box display="inline-flex" width="50%">
+              <Typography mr={1} variant="subtitle1" gutterBottom>
+                Apellido:
+              </Typography>
+              <Typography variant="body" gutterBottom>
+                {clientes?.apellido}
+              </Typography>
+            </Box>
+          </Box>
+          <Box display="flex" >
+            <Box display="inline-flex" width="50%">
+              <Typography mr={1} variant="subtitle1" gutterBottom>
+                Cedula:
+              </Typography>
+              <Typography variant="body" gutterBottom>
+                {clientes?.cedula}
+              </Typography>
+            </Box>
+            <Box display="inline-flex" width="50%">
+              <Typography mr={1} variant="subtitle1" gutterBottom>
+                Correo:
+              </Typography>
+              <Typography variant="body" gutterBottom>
+                {clientes?.email}
+              </Typography>
+            </Box>
+          </Box>
+        </Box>
           <TableContainer>
             <Table>
               <TableHead>
