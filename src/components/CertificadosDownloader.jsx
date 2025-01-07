@@ -4,10 +4,6 @@ import {
   Typography,
   TextField,
   Button,
-  Select,
-  MenuItem,
-  FormControl,
-  InputLabel,
   Box,
   Paper,
   Table,
@@ -23,21 +19,19 @@ import { Download } from '@mui/icons-material'; // Ícono de descarga
 import axios from 'axios';
 
 const CertificadosDownloader = () => {
-  const [clientes, setClientes] = useState([]); // Estado para almacenar los datos de clientes
+  const [cliente, setCliente] = useState(null); // Estado para almacenar los datos del cliente
   const [loading, setLoading] = useState(false); // Estado para manejar el loading
   const [error, setError] = useState(null); // Estado para manejar errores
-  const [searchType, setSearchType] = useState('documento'); // Estado para el tipo de búsqueda
   const [searchValue, setSearchValue] = useState(''); // Estado para el valor de búsqueda
-  const [results, setResults] = useState([]); // Estado para almacenar los resultados de la búsqueda
 
   // Obtener la lista de clientes al montar el componente
   useEffect(() => {
-    if (loading === true && searchValue !== '') {
+    if (loading && searchValue !== '') {
       const fetchClientes = async () => {
         try {
           const response = await axios.get(`http://127.0.0.1:8000/constultar/${searchValue}`);
           console.log('response->', response);
-          setClientes(response.data);
+          setCliente(response.data);
         } catch (err) {
           setError(err.message);
         } finally {
@@ -47,23 +41,7 @@ const CertificadosDownloader = () => {
 
       fetchClientes();
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loading]);
-
-  // Manejar la búsqueda de clientes
-  const handleSearch = (e) => {
-    e.preventDefault();
-    if (searchValue.trim() === '') {
-      setResults(clientes); // Si no hay valor de búsqueda, mostrar todos los clientes
-      return;
-    }
-
-    // Filtrar clientes por documento
-    const filteredClientes = clientes.filter((clientes) =>
-      clientes.documento.includes(searchValue)
-    );
-    setResults(filteredClientes);
-  };
+  }, [loading, searchValue]);
 
   // Manejar la descarga de certificados
   const handleDownload = (id) => {
@@ -71,34 +49,15 @@ const CertificadosDownloader = () => {
     // Aquí puedes implementar la lógica para descargar el certificado
   };
 
-  // Manejar la eliminación de certificados
-  const handleDelete = (id) => {
-    alert(`Eliminando certificado con ID: ${id}`);
-    // Aquí puedes implementar la lógica para eliminar el certificado
-  };
-
   return (
     <Container className="certificados-downloader-container">
       {/* Formulario de Búsqueda */}
-      <Paper className="search-form" sx={{ p: 3, mb: 3 }}>
+      <Paper className="search-form" sx={{ p: 5, mb: 2 }}>
         <Typography variant="h4" align="center" gutterBottom className="form-title">
           Consulta y Descarga de Certificados
         </Typography>
-        <Box component="form" onSubmit={handleSearch}>
+        <Box component="form">
           <Grid container spacing={3} justifyContent="center">
-            <Grid item xs={12} md={6}>
-              <FormControl fullWidth>
-                <InputLabel>Opción de búsqueda</InputLabel>
-                <Select
-                  value={searchType}
-                  onChange={(e) => setSearchType(e.target.value)}
-                  label="Opción de búsqueda"
-                  className="select-field"
-                >
-                  <MenuItem value="documento">Documento de Identificación</MenuItem>
-                </Select>
-              </FormControl>
-            </Grid>
             <Grid item xs={12} md={6}>
               <TextField
                 fullWidth
@@ -124,90 +83,88 @@ const CertificadosDownloader = () => {
           </Grid>
         </Box>
       </Paper>
+
+      {/* Mostrar el estado de carga o errores */}
       {loading && <CircularProgress />}
       {error && <Typography color="error">Error: {error}</Typography>}
-      {/* Componente de Tabla y Descarga */}
-      {!loading && !error && clientes?.cedula && (
+
+      {/* Mostrar los resultados de la búsqueda */}
+      {!loading && !error && cliente && (
         <Paper className="results-table" sx={{ p: 3 }}>
-        <Box>
           <Box>
-          <Typography variant="h5" gutterBottom className="table-title">
-            Resultados de la Búsqueda
-          </Typography>
+            <Typography variant="h5" gutterBottom className="table-title">
+              Resultados de la Búsqueda
+            </Typography>
+            <Box display="flex">
+              <Box display="inline-flex" width="50%">
+                <Typography mr={1} variant="subtitle1" gutterBottom>
+                  Nombre:
+                </Typography>
+                <Typography variant="body1" gutterBottom>
+                  {cliente.nombre}
+                </Typography>
+              </Box>
+              <Box display="inline-flex" width="50%">
+                <Typography mr={1} variant="subtitle1" gutterBottom>
+                  Apellido:
+                </Typography>
+                <Typography variant="body1" gutterBottom>
+                  {cliente.apellido}
+                </Typography>
+              </Box>
+            </Box>
+            <Box display="flex">
+              <Box display="inline-flex" width="50%">
+                <Typography mr={1} variant="subtitle1" gutterBottom>
+                  Cedula:
+                </Typography>
+                <Typography variant="body1" gutterBottom>
+                  {cliente.cedula}
+                </Typography>
+              </Box>
+              <Box display="inline-flex" width="50%">
+                <Typography mr={1} variant="subtitle1" gutterBottom>
+                  Correo:
+                </Typography>
+                <Typography variant="body1" gutterBottom>
+                  {cliente.correo}
+                </Typography>
+              </Box>
+            </Box>
           </Box>
-          <Box display="flex" >
-            <Box display="inline-flex" width="50%">
-              <Typography mr={1} variant="subtitle1" gutterBottom>
-                Nombre:
-              </Typography>
-              <Typography variant="body" gutterBottom>
-                {clientes?.nombre}
-              </Typography>
-            </Box>
-            <Box display="inline-flex" width="50%">
-              <Typography mr={1} variant="subtitle1" gutterBottom>
-                Apellido:
-              </Typography>
-              <Typography variant="body" gutterBottom>
-                {clientes?.apellido}
-              </Typography>
-            </Box>
-          </Box>
-          <Box display="flex" >
-            <Box display="inline-flex" width="50%">
-              <Typography mr={1} variant="subtitle1" gutterBottom>
-                Cedula:
-              </Typography>
-              <Typography variant="body" gutterBottom>
-                {clientes?.cedula}
-              </Typography>
-            </Box>
-            <Box display="inline-flex" width="50%">
-              <Typography mr={1} variant="subtitle1" gutterBottom>
-                Correo:
-              </Typography>
-              <Typography variant="body" gutterBottom>
-                {clientes?.email}
-              </Typography>
-            </Box>
-          </Box>
-        </Box>
           <TableContainer>
             <Table>
               <TableHead>
                 <TableRow className="table-header">
-                  <TableCell>ID</TableCell>
-                  <TableCell>Nombre</TableCell>
-                  <TableCell>Documento</TableCell>
+                  <TableCell>Curso</TableCell>
+                  <TableCell>Estado</TableCell>
+                  <TableCell>Fecha Inicio</TableCell>
+                  <TableCell>Fecha Fin</TableCell>
+                  <TableCell>Documento PDF</TableCell>
                   <TableCell>Acción</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
-                {results.map((clientes) => (
-                  <TableRow key={clientes.id} className="table-row">
-                    <TableCell>{clientes.id}</TableCell>
-                    <TableCell>{clientes.nombre}</TableCell>
-                    <TableCell>{clientes.documento}</TableCell>
-                    <TableCell>
-                      <Button
-                        variant="contained"
-                        startIcon={<Download />}
-                        className="download-button"
-                        onClick={() => handleDownload(clientes.id)}
-                      >
-                        Descargar
-                      </Button>
-                      <Button
-                        variant="contained"
-                        color="error"
-                        onClick={() => handleDelete(clientes.id)}
-                        sx={{ ml: 2 }}
-                      >
-                        Eliminar
-                      </Button>
-                    </TableCell>
-                  </TableRow>
-                ))}
+                {cliente.certificados && cliente.certificados.length > 0 &&
+                  cliente.certificados.map((certificado) => (
+                    <TableRow key={certificado.id} className="table-row">
+                      <TableCell>{certificado.curso}</TableCell>
+                      <TableCell>{certificado.estado}</TableCell>
+                      <TableCell>{certificado.fecha_inicio}</TableCell>
+                      <TableCell>{certificado.fecha_fin}</TableCell>
+                      <TableCell>{certificado.documento_pdf}</TableCell>
+                      <TableCell>
+                        <Button
+                          variant="contained"
+                          startIcon={<Download />}
+                          className="download-button"
+                          onClick={() => handleDownload(certificado.id)}
+                        >
+                          Descargar
+                        </Button>
+                      </TableCell>
+                    </TableRow>
+                  ))}
               </TableBody>
             </Table>
           </TableContainer>
