@@ -43,10 +43,33 @@ const CertificadosDownloader = () => {
     }
   }, [loading, searchValue]);
 
+   // Función para descargar el archivo PDF
+   const downloadFile = (url, filename) => {
+    axios({
+      url: url,
+      method: 'GET',
+      responseType: 'blob', // Importante para descargar archivos
+    }).then((response) => {
+      const href = URL.createObjectURL(response.data);
+
+      const link = document.createElement('a');
+      link.href = href;
+      link.setAttribute('download', filename); // Nombre del archivo a descargar
+      document.body.appendChild(link);
+      link.click();
+
+      document.body.removeChild(link);
+      URL.revokeObjectURL(href);
+    }).catch((err) => {
+      setError('Error al descargar el archivo');
+    });
+  };
+
   // Manejar la descarga de certificados
-  const handleDownload = (id) => {
-    alert(`Descargando certificado con ID: ${id}`);
-    // Aquí puedes implementar la lógica para descargar el certificado
+  const handleDownload = (certificadoId) => {
+    const pdfUrl = `http://127.0.0.1:8000/certificados/${cliente.id}/${certificadoId}/descargar`; // URL del PDF
+    const filename = `certificado_${certificadoId}.pdf`; // Nombre del archivo
+    downloadFile(pdfUrl, filename);
   };
 
   return (
@@ -141,7 +164,6 @@ const CertificadosDownloader = () => {
                   <TableCell>Fecha Inicio</TableCell>
                   <TableCell>Fecha Fin</TableCell>
                   <TableCell>Documento PDF</TableCell>
-                  <TableCell>Acción</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -152,13 +174,12 @@ const CertificadosDownloader = () => {
                       <TableCell>{certificado.estado}</TableCell>
                       <TableCell>{certificado.fecha_inicio}</TableCell>
                       <TableCell>{certificado.fecha_fin}</TableCell>
-                      <TableCell>{certificado.documento_pdf}</TableCell>
                       <TableCell>
                         <Button
                           variant="contained"
                           startIcon={<Download />}
                           className="download-button"
-                          onClick={() => handleDownload(certificado.id)}
+                          onClick={() => handleDownload(certificado.documento_pdf)}
                         >
                           Descargar
                         </Button>
