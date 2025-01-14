@@ -43,35 +43,6 @@ const CertificadosDownloader = () => {
     }
   }, [loading, searchValue]);
 
-   // Función para descargar el archivo PDF
-   const downloadFile = (url, filename) => {
-    axios({
-      url: url,
-      method: 'GET',
-      responseType: 'blob', // Importante para descargar archivos
-    }).then((response) => {
-      const href = URL.createObjectURL(response.data);
-
-      const link = document.createElement('a');
-      link.href = href;
-      link.setAttribute('download', filename); // Nombre del archivo a descargar
-      document.body.appendChild(link);
-      link.click();
-
-      document.body.removeChild(link);
-      URL.revokeObjectURL(href);
-    }).catch((err) => {
-      setError('Error al descargar el archivo');
-    });
-  };
-
-  // Manejar la descarga de certificados
-  const handleDownload = (certificadoId) => {
-    const pdfUrl = `http://127.0.0.1:8000/certificados/${cliente.id}/${certificadoId}/descargar`; // URL del PDF
-    const filename = `certificado_${certificadoId}.pdf`; // Nombre del archivo
-    downloadFile(pdfUrl, filename);
-  };
-
   return (
     <Container className="certificados-downloader-container">
       {/* Formulario de Búsqueda */}
@@ -170,16 +141,18 @@ const CertificadosDownloader = () => {
                 {cliente.certificados && cliente.certificados.length > 0 &&
                   cliente.certificados.map((certificado) => (
                     <TableRow key={certificado.id} className="table-row">
-                      <TableCell>{certificado.curso}</TableCell>
-                      <TableCell>{certificado.estado}</TableCell>
-                      <TableCell>{certificado.fecha_inicio}</TableCell>
-                      <TableCell>{certificado.fecha_fin}</TableCell>
+                      <TableCell>{certificado.certificados_id}</TableCell>
+                      <TableCell>{certificado.estado_validez}</TableCell>
+                      <TableCell>{certificado.fecha_inicio_validez}</TableCell>
+                      <TableCell>{certificado.fecha_fin_validez}</TableCell>
                       <TableCell>
                         <Button
+                          component="a"
+                          href={`http://127.0.0.1:8000/storage/${certificado.documento_pdf_validez}`}
+                          target="_blank"
                           variant="contained"
                           startIcon={<Download />}
                           className="download-button"
-                          onClick={() => handleDownload(certificado.documento_pdf)}
                         >
                           Descargar
                         </Button>
