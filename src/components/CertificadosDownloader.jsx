@@ -29,7 +29,7 @@ const CertificadosDownloader = () => {
     if (loading && searchValue !== '') {
       const fetchClientes = async () => {
         try {
-          const response = await axios.get(`http://52.14.137.11/constultar/${searchValue}`);
+          const response = await axios.get(`http://52.14.137.11/api/constultar/${searchValue}`);
           console.log('response->', response);
           setCliente(response.data);
         } catch (err) {
@@ -148,7 +148,7 @@ const CertificadosDownloader = () => {
                       <TableCell>
                         <Button
                           component="a"
-                          href={`http://127.0.0.1:8000/storage/${certificado.documento_pdf_validez}`}
+                          href={`http://52.14.137.11/api/storage/${certificado.documento_pdf_validez}`}
                           target="_blank"
                           variant="contained"
                           startIcon={<Download />}
