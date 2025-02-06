@@ -29,7 +29,7 @@ const CertificadosDownloader = () => {
     if (loading && searchValue !== '') {
       const fetchClientes = async () => {
         try {
-          const response = await axios.get(`http://127.0.0.1:8000/constultar/${searchValue}`);
+          const response = await axios.get(`http://52.14.137.11/constultar/${searchValue}`);
           console.log('response->', response);
           setCliente(response.data);
         } catch (err) {
