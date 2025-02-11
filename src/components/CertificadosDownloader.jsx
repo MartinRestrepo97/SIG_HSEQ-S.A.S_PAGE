@@ -148,7 +148,7 @@ const CertificadosDownloader = () => {
                       <TableCell>
                         <Button
                           component="a"
-                          href={`https://sig-hseq-sas.site/api/storage/${certificado.documento_pdf_validez}`}
+                          href={`https://sig-hseq-sas.site/api/descargar-certificado-cliente/${certificado.id}`}
                           target="_blank"
                           variant="contained"
                           startIcon={<Download />}
