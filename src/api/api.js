@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL: 'http://18.219.92.87/api', // URL de tu backend Laravel
+    baseURL: 'https://sig-hseq-sas.site/api', // URL de tu backend Laravel
     headers: {
         'Content-Type': 'application/json',
     },

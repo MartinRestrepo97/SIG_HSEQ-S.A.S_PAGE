@@ -29,7 +29,7 @@ const CertificadosDownloader = () => {
     if (loading && searchValue !== '') {
       const fetchClientes = async () => {
         try {
-          const response = await axios.get(`http://18.219.92.87/api/constultar/${searchValue}`);
+          const response = await axios.get(`https://sig-hseq-sas.site/api/constultar/${searchValue}`);
           console.log('response->', response);
           setCliente(response.data);
         } catch (err) {
@@ -148,7 +148,7 @@ const CertificadosDownloader = () => {
                       <TableCell>
                         <Button
                           component="a"
-                          href={`http://18.219.92.87/api/storage/${certificado.documento_pdf_validez}`}
+                          href={`https://sig-hseq-sas.site/api/storage/${certificado.documento_pdf_validez}`}
                           target="_blank"
                           variant="contained"
                           startIcon={<Download />}
