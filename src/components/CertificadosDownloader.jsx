@@ -16,7 +16,7 @@ import {
   CircularProgress,
 } from '@mui/material';
 import { Download } from '@mui/icons-material'; // Ícono de descarga
-import axios from 'axios';
+// import axios from 'axios';
 
 const CertificadosDownloader = () => {
   // eslint-disable-next-line no-unused-vars
@@ -30,7 +30,7 @@ const CertificadosDownloader = () => {
     if (loading && searchValue !== '') {
       const fetchClientes = async () => {
         try {
-          const response = await axios.get(`https://sig-hseq-sas.site/api/constultar/${searchValue}`);
+          const response = await fetch(`https://sig-hseq-sas.site/api/constultar/${searchValue}`);
           console.log('response2->', response);
           
           if (response.data) setCliente(response.data);
