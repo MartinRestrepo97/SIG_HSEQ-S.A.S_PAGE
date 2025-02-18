@@ -16,7 +16,7 @@ import {
   CircularProgress,
 } from '@mui/material';
 import { Download } from '@mui/icons-material'; // Ícono de descarga
-// import axios from 'axios';
+import axios from 'axios';
 
 const CertificadosDownloader = () => {
   // eslint-disable-next-line no-unused-vars
@@ -30,18 +30,11 @@ const CertificadosDownloader = () => {
     if (loading && searchValue !== '') {
       const fetchClientes = async () => {
         try {
-          const response =
-            await fetch(
-              `https://sig-hseq-sas.site/api/constultar/${searchValue}`,
-              { method: 'GET'}
-            );
-          console.log('response2->', response);
-          
-          setCliente(response.json());
+          const response = await axios.get(`https://sig-hseq-sas.site/api/constultar/${searchValue}`);          
+          setCliente(response.data);
           setLoading(false);
         } catch (err) {
           setError(err.message);
-          console.log(err.message);
           setLoading(false);
         } finally {
           setLoading(false);
@@ -51,9 +44,7 @@ const CertificadosDownloader = () => {
       fetchClientes();
     }
   }, [loading, searchValue]);
-  useEffect(() => {
-    console.log('cambio cliente', cliente);
-  }, [cliente])
+
   return (
     <Container className="certificados-downloader-container">
       {/* Formulario de Búsqueda */}
