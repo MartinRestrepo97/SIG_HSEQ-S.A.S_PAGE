@@ -31,8 +31,9 @@ const CertificadosDownloader = () => {
       const fetchClientes = async () => {
         try {
           const response = await axios.get(`https://sig-hseq-sas.site/api/constultar/${searchValue}`);
-          console.log('response->', response);
-          //setCliente(response.data);
+          console.log('response2->', response);
+          
+          if (response.data) setCliente(response.data);
         } catch (err) {
           setError(err.message);
         } finally {
