@@ -30,13 +30,18 @@ const CertificadosDownloader = () => {
     if (loading && searchValue !== '') {
       const fetchClientes = async () => {
         try {
-          const response = await fetch(`https://sig-hseq-sas.site/api/constultar/${searchValue}`);
+          const response =
+            await fetch(
+              `https://sig-hseq-sas.site/api/constultar/${searchValue}`,
+              { method: 'GET'}
+            );
           console.log('response2->', response);
           
-          setCliente(response.data);
+          setCliente(response.json());
           setLoading(false);
         } catch (err) {
           setError(err.message);
+          console.log(err.message);
           setLoading(false);
         } finally {
           setLoading(false);
