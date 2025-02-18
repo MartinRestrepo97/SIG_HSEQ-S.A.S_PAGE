@@ -34,8 +34,10 @@ const CertificadosDownloader = () => {
           console.log('response2->', response);
           
           setCliente(response.data);
+          setLoading(false);
         } catch (err) {
           setError(err.message);
+          setLoading(false);
         } finally {
           setLoading(false);
         }
@@ -44,7 +46,9 @@ const CertificadosDownloader = () => {
       fetchClientes();
     }
   }, [loading, searchValue]);
-
+  useEffect(() => {
+    console.log('cambio cliente', cliente);
+  }, [cliente])
   return (
     <Container className="certificados-downloader-container">
       {/* Formulario de Búsqueda */}
