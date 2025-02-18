@@ -19,6 +19,7 @@ import { Download } from '@mui/icons-material'; // Ícono de descarga
 import axios from 'axios';
 
 const CertificadosDownloader = () => {
+  // eslint-disable-next-line no-unused-vars
   const [cliente, setCliente] = useState(null); // Estado para almacenar los datos del cliente
   const [loading, setLoading] = useState(false); // Estado para manejar el loading
   const [error, setError] = useState(null); // Estado para manejar errores
@@ -31,7 +32,7 @@ const CertificadosDownloader = () => {
         try {
           const response = await axios.get(`https://sig-hseq-sas.site/api/constultar/${searchValue}`);
           console.log('response->', response);
-          setCliente(response.data);
+          //setCliente(response.data);
         } catch (err) {
           setError(err.message);
         } finally {
